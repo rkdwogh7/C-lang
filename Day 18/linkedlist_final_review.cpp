@@ -61,7 +61,7 @@ void printNode(Node** head) {
 
 //deleteNode
 
-/*void deleteLastNode(Node** head) {
+void deleteLastNode(Node** head) {
 	Node* searcher = *head;
 	//아무것도 없을때
 	if (searcher == NULL) {
@@ -81,12 +81,13 @@ void printNode(Node** head) {
 	}
 
 	Node* deleteTarget = NULL;
-	deleteTarget = searcher->next->next;
+	deleteTarget = searcher->next;
 
 	printf("데이터 %d가 삭제되었습니다.\n", deleteTarget->data);
+	searcher.next = NULL;
 	free(deleteLastNode);
 }
-*/
+
 
 int main() {
 	Node* head = NULL;			//head가 있음
