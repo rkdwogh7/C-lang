@@ -18,11 +18,11 @@ Node* createNode() {
 	newNode = (Node*)malloc(sizeof(Node));
 
 	char newName[50];
-	printf("Ä¿ÇÇ ÀÌ¸§ ÀÔ·Â:");
+	printf("ì»¤í”¼ ì´ë¦„ ì…ë ¥:");
 	scanf("%s", newName);
 
 	int newPrice;
-	printf("Ä¿ÇÇ °¡°İ ÀÔ·Â:");
+	printf("ì»¤í”¼ ê°€ê²© ì…ë ¥:");
 	scanf("%d", &newPrice);
 
 	strcpy(newNode->data.name, newName);
@@ -35,61 +35,61 @@ Node* createNode() {
 void appendNode(Node** head) {
 	Node* newNode = createNode();
 
-	if (*head == NULL) {				//¾Æ¹«°Íµµ ¾øÀ»¶§ ³ëµå(1) »ı¼º
+	if (*head == NULL) {				//ì•„ë¬´ê²ƒë„ ì—†ì„ë•Œ ë…¸ë“œ(1) ìƒì„±
 		*head = newNode;
 		return;
 	}
 	
-	Node* searcher = *head;				//searcher°¡ »ı¼ºÇÑ ³ëµå¸¦ °¡¸®Å´
-	while (searcher->next != NULL) {	//´ÙÀ½ ³ëµå°¡ ÀÖ´Ù¸é(2->3)
-		searcher = searcher->next;		//»ı¼ºÇÑ ³ëµå¸¦ searcher·Î ¹Ù²ãÁÜ
+	Node* searcher = *head;				//searcherê°€ ìƒì„±í•œ ë…¸ë“œë¥¼ ê°€ë¦¬í‚´
+	while (searcher->next != NULL) {	//ë‹¤ìŒ ë…¸ë“œê°€ ìˆë‹¤ë©´(2->3)
+		searcher = searcher->next;		//ìƒì„±í•œ ë…¸ë“œë¥¼ searcherë¡œ ë°”ê¿”ì¤Œ
 	}
 
-	searcher->next = newNode;			//»ı¼ºÇÑ ³ëµå(searcher)ÀÇ ´ÙÀ½ ³ëµå »ı¼º(2)
+	searcher->next = newNode;			//ìƒì„±í•œ ë…¸ë“œ(searcher)ì˜ ë‹¤ìŒ ë…¸ë“œ ìƒì„±(2)
 }
 
 //printNode
 void printNode(Node** head) {
 	Node* searcher = *head;
-	while (searcher->next != NULL) {		//´ÙÀ½ ³ëµå°¡ ÀÖ´Ù¸é
-		printf("Ä¿ÇÇ ÀÌ¸§:%s, Ä¿ÇÇ °¡°İ:%d\n", searcher->data.name, searcher->data.price);
-		searcher = searcher->next;			//ÇÁ¸°Æ®ÇÏ°í ´ÙÀ½ ³ëµå¸¦ searcher·Î ¹Ù²ãÁÜ
+	while (searcher->next != NULL) {		//ë‹¤ìŒ ë…¸ë“œê°€ ìˆë‹¤ë©´
+		printf("ì»¤í”¼ ì´ë¦„:%s, ì»¤í”¼ ê°€ê²©:%d\n", searcher->data.name, searcher->data.price);
+		searcher = searcher->next;			//í”„ë¦°íŠ¸í•˜ê³  ë‹¤ìŒ ë…¸ë“œë¥¼ searcherë¡œ ë°”ê¿”ì¤Œ
 	}
-	printf("Ä¿ÇÇ ÀÌ¸§:%s, Ä¿ÇÇ °¡°İ:%d\n", searcher->data.name, searcher->data.price);
-											//Ã¹¹øÂ° ³ëµå ÇÁ¸°Æ®(³ëµå°¡ ÇÏ³ªÀÏ¶§ ½ÇÇà)
+	printf("ì»¤í”¼ ì´ë¦„:%s, ì»¤í”¼ ê°€ê²©:%d\n", searcher->data.name, searcher->data.price);
+											//ì²«ë²ˆì§¸ ë…¸ë“œ í”„ë¦°íŠ¸(ë…¸ë“œê°€ í•˜ë‚˜ì¼ë•Œ ì‹¤í–‰)
 }
 
 //deleteNode
 
 /*void deleteLastNode(Node** head) {
 	Node* searcher = *head;
-	//¾Æ¹«°Íµµ ¾øÀ»¶§
+	//ì•„ë¬´ê²ƒë„ ì—†ì„ë•Œ
 	if (searcher == NULL) {
-		printf("»èÁ¦ÇÒ µ¥ÀÌÅÍ°¡ ¾ø½À´Ï´Ù.\n");
+		printf("ì‚­ì œí•  ë°ì´í„°ê°€ ì—†ìŠµë‹ˆë‹¤.\n");
 		return;
 	}
-	//ÇÏ³ª¸¸ ÀÖÀ»¶§
+	//í•˜ë‚˜ë§Œ ìˆì„ë•Œ
 	if (searcher->next == NULL) {
 		*head = NULL;
-		printf("µ¥ÀÌÅÍ %d°¡ »èÁ¦µÇ¾ú½À´Ï´Ù.\n", searcher->data);
+		printf("ë°ì´í„° %dê°€ ì‚­ì œë˜ì—ˆìŠµë‹ˆë‹¤.\n", searcher->data);
 		free(searcher);
 		return;
 	}
-	//µÎ°³ ÀÌ»ó ÀÖÀ»¶§
+	//ë‘ê°œ ì´ìƒ ìˆì„ë•Œ
 	while (searcher->next->next != NULL) {
 		searcher = searcher->next;
 	}
-	searcher->next = NULL;
+
 	Node* deleteTarget = NULL;
 	deleteTarget = searcher->next->next;
 
-	printf("µ¥ÀÌÅÍ %d°¡ »èÁ¦µÇ¾ú½À´Ï´Ù.\n", deleteTarget->data);
+	printf("ë°ì´í„° %dê°€ ì‚­ì œë˜ì—ˆìŠµë‹ˆë‹¤.\n", deleteTarget->data);
 	free(deleteLastNode);
 }
 */
 
 int main() {
-	Node* head = NULL;			//head°¡ ÀÖÀ½
+	Node* head = NULL;			//headê°€ ìˆìŒ
 	appendNode(&head);
 	appendNode(&head);
 	printNode(&head);
